@@ -1,0 +1,71 @@
+
+.App {
+  margin: 0;
+  display: grid;
+  height: 100vh;
+  grid-template-columns: auto 35% 35%;
+      grid-template-rows: 40% 20% 40%;
+  grid-template-areas:
+  "listOfSearches mapWithLocation  infoLocation"
+  "listOfSearches search search"
+  "listOfSearches mapWithLastSearch infoSearch";
+     
+}
+
+.test{
+  background-color: antiquewhite;
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+#listOfSearches {
+  grid-area: listOfSearches;
+  background-color: #7EC8E3;
+}
+
+header {
+  grid-area: header;
+  background-color: #91C8FF;
+}
+
+#mapWithLocation  {
+  grid-area: mapWithLocation;
+  background-color: #B3D8FD;
+}
+#infoLocation {
+  grid-area: infoLocation;
+  background-color: #5E86AF;
+}
+#mapWithLastSearch {
+  grid-area: mapWithLastSearch;
+  background-color: #6D9FD2;
+}
+
+#infoSearch {
+  grid-area: infoSearch;
+  background-color: #7EC8E3;
+}
+
+#search {
+  grid-area: search;
+  background-color: #FFFFFF;
+}
+
+@media only screen and (max-width: 768px) {
+
+  .App {
+      margin: 0;
+      display: grid;
+      grid-template-columns: 100%;
+      grid-template-rows: repeat(auto, 10);
+      grid-template-areas:
+      "listOfSearches"
+      "mapWithLocation"
+      "infoLocation"
+      "mapWithLastSearch"
+      "infoSearch"
+      "search"
+      "footer"; 
+  }
+
+}

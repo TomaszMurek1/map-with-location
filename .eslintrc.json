@@ -1,0 +1,103 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "plugins": ["@typescript-eslint", "react-hooks"],
+  "extends": [
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "rules": {
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/prop-types": "off",
+    "react/display-name": "off",
+    "react/jsx-key": "off",
+    "react/no-unescaped-entities": 0,
+    "@typescript-eslint/ban-types": [
+      "error",
+      {
+        "extendDefaults": true,
+        "types": {
+          "{}": false,
+          "object": false,
+          "Object": false
+        }
+      }
+    ],
+    "@typescript-eslint/no-inferrable-types": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-empty-interface": "off"
+  },
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "detect"
+    }
+  }
+}
+/* 
+{
+  "root":true,
+  "parser": "@typescript-eslint/parser",
+    "extends": [
+
+       "plugin:@typescript-eslint/recommended",
+      "prettier",
+      "plugin:import/errors",
+      "airbnb-typescript" 
+    ],
+    "rules": {
+      "react/jsx-props-no-spreading": "off",
+      "import/prefer-default-export": "off",
+      "import/extensions": [
+        "error",
+        "ignorePackages",
+        {
+          "js": "never",
+          "jsx": "never",
+          "ts": "never",
+          "tsx": "always"
+        }
+      ],
+      "import/order": [
+        "error",
+        {
+          "groups": [
+            "builtin",
+            "external",
+            "internal",
+            ["parent", "sibling"],
+            "object",
+            "type",
+            "index"
+          ],
+          "newlines-between": "always",
+          "pathGroupsExcludedImportTypes": ["builtin"],
+          "alphabetize": { "order": "asc", "caseInsensitive": true },
+          "pathGroups": [
+            {
+              "pattern": "{react,react/**,react-dom/**,next,next/**}",
+              "group": "external",
+              "position": "before"
+            },
+            {
+              "pattern": "@/**",
+              "group": "internal",
+              "position": "before"
+            },
+            {
+              "pattern": "./**.module.css",
+              "group": "index",
+              "position": "after"
+            }
+          ]
+        }
+      ]
+    }
+  }
+   */
