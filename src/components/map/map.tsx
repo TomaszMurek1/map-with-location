@@ -62,9 +62,9 @@ const mockResponse: IData = {
 };
 
 const Map: React.FC<{ id: string }> = ({ id }) => {
-  const { isLoaded } = useJsApiLoader({
+  /*  const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY as string,
-  });
+  }); */
   const [b, setb] = useState<boolean>(false);
   const [data, setData] = useState<IData | null>(null);
   const request = "https://jsonplaceholder.typicode.com/posts";
@@ -95,16 +95,18 @@ const Map: React.FC<{ id: string }> = ({ id }) => {
         //setmyIP(res.data.IPv4)
       };
       // getIp()
-      getdata();
+      //getdata();
     }
   }, []);
 
-  return isLoaded ? (
+  return false ? (
     <GoogleMap zoom={10} center={{ lat: 44, lng: -80 }}>
       <MarkerF position={{ lat: 44, lng: -80 }} />
     </GoogleMap>
   ) : (
-    <div>Loading</div>
+    <div style={{ backgroundColor: "lightblue", marginTop: "32px" }}>
+      Loading
+    </div>
   );
 };
 
