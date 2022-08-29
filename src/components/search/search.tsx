@@ -12,7 +12,7 @@ export const Search: React.FC = () => {
       Math.max(...searchList.map((item) => item.id), 0) + 1;
     console.log(nextId);
     const searchItem: ISearchItem = { id: nextId, value: valueToSearch };
-    setSearchList([...searchList, searchItem]);
+    setSearchList([searchItem, ...searchList]);
   };
   const updateSearchField = (event: any) => {
     setValueToSearch(event.target.value);
