@@ -1,8 +1,7 @@
 import React, { useMemo } from "react";
 
 import "./App.css";
-import { InfoLocation } from "./components/info-location/info-location";
-import { InfoSearch } from "./components/info-search/info-search";
+
 import { SearchList } from "./components/search-list/search-list";
 import { MapWrapper } from "./components/map/map-wrapper";
 import { Search } from "./components/search/search";
@@ -17,14 +16,20 @@ const AppComponent: React.FC = () => {
   const value = useMemo(() => ({ searchList, setSearchList }), [searchList]);
   return (
     <div className="App">
-      <MapWrapper id="mapWithLocation">Map with user location</MapWrapper>
+      <MapWrapper
+        id="mapWithLocation"
+        address={"check"}
+        label="Map with user search"
+      />
       <SearchListContext.Provider value={value}>
         <SearchList />
         <Search />
       </SearchListContext.Provider>
-      <InfoLocation>Information about user location</InfoLocation>
-      <InfoSearch>Information about last search</InfoSearch>
-      <MapWrapper id="mapWithLastSearch">Map with last search</MapWrapper>
+      <MapWrapper
+        id="mapWithLastSearch"
+        address={value.searchList[0] ? value.searchList[0].value : ""}
+        label="Map with last search"
+      />
     </div>
   );
 };
