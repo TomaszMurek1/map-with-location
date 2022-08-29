@@ -1,20 +1,28 @@
-import React from "react";
+import React, { useMemo } from "react";
 
 import "./App.css";
 import { InfoLocation } from "./components/info-location/info-location";
 import { InfoSearch } from "./components/info-search/info-search";
-import { ListOfSearches } from "./components/list-of-searches/list-of-searches";
+import { SearchList } from "./components/search-list/search-list";
 import { MapWrapper } from "./components/map/map-wrapper";
 import { Search } from "./components/search/search";
+import {
+  ISearchItem,
+  SearchListContext,
+} from "./components/search-list-context";
 
 const AppComponent: React.FC = () => {
+  const [searchList, setSearchList] = React.useState<ISearchItem[]>([]);
+
+  const value = useMemo(() => ({ searchList, setSearchList }), [searchList]);
   return (
     <div className="App">
-      <ListOfSearches />
       <MapWrapper id="mapWithLocation">Map with user location</MapWrapper>
+      <SearchListContext.Provider value={value}>
+        <SearchList />
+        <Search />
+      </SearchListContext.Provider>
       <InfoLocation>Information about user location</InfoLocation>
-      <Search />
-
       <InfoSearch>Information about last search</InfoSearch>
       <MapWrapper id="mapWithLastSearch">Map with last search</MapWrapper>
     </div>
