@@ -1,14 +1,16 @@
 import React, { useMemo } from "react";
-import "./App.css";
+//Components
 import { Search } from "./components/search/search";
 import {
   ISearchItem,
   SearchListContext,
 } from "./components/search-list-context";
-import { ThemeProvider } from "@emotion/react";
-import { theme } from "./theme";
 import { SearchList } from "./components/search-list/search-list";
 import { MapWithInfo } from "./components/map-with-info/map-with-info";
+//Theme
+import { ThemeProvider } from "@emotion/react";
+import { theme } from "./theme";
+import "./App.css";
 
 const AppComponent: React.FC = () => {
   const [searchList, setSearchList] = React.useState<ISearchItem[]>([]);

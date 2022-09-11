@@ -1,7 +1,9 @@
 import React, { useState, useContext } from "react";
+//Components
+import { ISearchItem, SearchListContext } from "../search-list-context";
+//Material UI
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { ISearchItem, SearchListContext } from "../search-list-context";
 import { Card } from "@mui/material";
 
 export const Search: React.FC<{ gridArea: string }> = ({ gridArea }) => {
@@ -9,15 +11,16 @@ export const Search: React.FC<{ gridArea: string }> = ({ gridArea }) => {
   const [valueToSearch, setValueToSearch] = useState<string>("");
   const [isSearchTextValid, setIsSearchTextValid] = useState<boolean>(true);
 
-  const searchData = (valueToSearch: string) => {
-    console.log(valueToSearch);
+  const searchData = (valueToSearch: string): void => {
     const nextId: number =
       Math.max(...searchList.map((item) => item.id), 0) + 1;
-    console.log(nextId);
     const searchItem: ISearchItem = { id: nextId, value: valueToSearch };
     setSearchList([searchItem, ...searchList]);
   };
-  const updateSearchField = (event: any) => {
+
+  const updateSearchField = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ): void => {
     setValueToSearch(event.target.value);
   };
 
@@ -34,7 +37,7 @@ export const Search: React.FC<{ gridArea: string }> = ({ gridArea }) => {
     return validUrl.test(textToValidate);
   };
 
-  const clickButton = () => {
+  const clickSearch = () => {
     const isValid = validateSearchText(valueToSearch);
 
     if (isValid) {
@@ -69,13 +72,15 @@ export const Search: React.FC<{ gridArea: string }> = ({ gridArea }) => {
           }
           onKeyPress={(e: React.KeyboardEvent<HTMLDivElement>) => {
             if (e.key === "Enter") {
-              clickButton();
+              clickSearch();
             }
           }}
-          onChange={(e) => updateSearchField(e)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            updateSearchField(e)
+          }
         />
       </div>
-      <Button disabled={false} variant="outlined" onClick={() => clickButton()}>
+      <Button disabled={false} variant="outlined" onClick={() => clickSearch()}>
         Search
       </Button>
     </Card>

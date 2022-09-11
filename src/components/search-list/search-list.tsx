@@ -1,6 +1,6 @@
-import { Card, List, ListItem, ListItemText, Typography } from "@mui/material";
 import React, { useContext } from "react";
 import { SearchListContext } from "../search-list-context";
+import { Card, List, ListItem, ListItemText, Typography } from "@mui/material";
 
 export const SearchList: React.FC<{ gridArea: string }> = ({ gridArea }) => {
   const { searchList } = useContext(SearchListContext);

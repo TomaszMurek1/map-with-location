@@ -5,15 +5,11 @@ import { DataType } from "../map-with-info.types";
 export const InfoLocation: React.FC<{ data: Record<DataType, string> }> = ({
   data,
 }) => {
-  //const [myIP, setmyIP] = useState(address.ip());
-
-  // console.log("data", data);
-
   interface IHeader {
     propAccessor: DataType;
     label: string;
   }
-  const headers: IHeader[] = [
+  const headersDefinition: IHeader[] = [
     { propAccessor: "continent_name", label: "Continent:" },
     { propAccessor: "ip", label: "IP Address::" },
     { propAccessor: "region_name", label: "Region:" },
@@ -28,11 +24,13 @@ export const InfoLocation: React.FC<{ data: Record<DataType, string> }> = ({
       {data ? (
         <Table>
           <TableHead>
-            {headers.map((header: IHeader, index: number) => {
+            {headersDefinition.map((header: IHeader, index: number) => {
               const accessor: DataType = header.propAccessor;
               return (
                 <TableRow key={accessor}>
-                  <TableCell variant="head">{headers[index].label}</TableCell>
+                  <TableCell variant="head">
+                    {headersDefinition[index].label}
+                  </TableCell>
                   <TableCell>{data[accessor]}</TableCell>
                 </TableRow>
               );
