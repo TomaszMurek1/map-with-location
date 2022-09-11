@@ -7,7 +7,7 @@ export const InfoLocation: React.FC<{ data: Record<DataType, string> }> = ({
 }) => {
   //const [myIP, setmyIP] = useState(address.ip());
 
-  console.log("data", data);
+  // console.log("data", data);
 
   interface IHeader {
     propAccessor: DataType;

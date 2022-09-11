@@ -14,7 +14,7 @@ export const MapWithInfo: React.FC<{
 }> = ({ label, address, gridArea }) => {
   const [data, setData] = useState<Record<DataType, string>>(dataMock);
   const key = process.env.REACT_APP_IPSTACK_API_KEY;
-  console.log("address", address);
+  //console.log("address", address);
 
   const ipstackAPI = `http://api.ipstack.com/${address}?access_key=${key}`;
   useEffect(() => {
