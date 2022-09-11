@@ -56,5 +56,9 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
     "prettier": "^2.7.1"
+  },
+  "engines": {
+    "node": "16.x",
+    "npm": "8.5.5"
   }
 }
