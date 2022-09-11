@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { InfoLocation } from "../info-location/info-location";
+import { InfoLocation } from "./info-location/info-location";
 import axios from "axios";
-import "./map-wrapper.styles.tsx";
+import "./map-with-info.styles.tsx";
 import { Card, Typography } from "@mui/material";
-import { dataMock } from "../info-location/info-location.mock";
-import { DataType } from "./map-wrapper.types";
-import { InfoItem, MapItem } from "./map-wrapper.styles";
+import { dataMock } from "./info-location/info-location.mock";
+import { DataType } from "./map-with-info.types";
+import { InfoItem, MapItem } from "./map-with-info.styles";
 
-export const MapWrapper: React.FC<{
+export const MapWithInfo: React.FC<{
   label: string;
   address: string;
   gridArea: string;

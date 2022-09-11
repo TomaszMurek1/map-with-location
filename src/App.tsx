@@ -8,27 +8,31 @@ import {
 import { ThemeProvider } from "@emotion/react";
 import { theme } from "./theme";
 import { SearchList } from "./components/search-list/search-list";
-import { MapWrapper } from "./components/map/map-wrapper";
+import { MapWithInfo } from "./components/map-with-info/map-with-info";
 
 const AppComponent: React.FC = () => {
   const [searchList, setSearchList] = React.useState<ISearchItem[]>([]);
-  const value = useMemo(() => ({ searchList, setSearchList }), [searchList]);
+  const lastSearchItem: string = searchList[0] ? searchList[0].value : "";
+  const searchListContext = useMemo(
+    () => ({ searchList, setSearchList }),
+    [searchList]
+  );
 
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
-        <MapWrapper
+        <MapWithInfo
           gridArea="mapWithLocation"
           address={"check"}
           label="Map with user search"
         />
-        <SearchListContext.Provider value={value}>
+        <SearchListContext.Provider value={searchListContext}>
           <SearchList gridArea="listOfSearches" />
           <Search gridArea="search" />
         </SearchListContext.Provider>
-        <MapWrapper
+        <MapWithInfo
           gridArea="mapWithLastSearch"
-          address={value.searchList[0] ? value.searchList[0].value : ""}
+          address={lastSearchItem}
           label="Map with last search"
         />
       </ThemeProvider>

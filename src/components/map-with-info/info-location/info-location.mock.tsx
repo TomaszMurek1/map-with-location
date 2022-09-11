@@ -1,4 +1,4 @@
-import { DataType } from "../map/map-wrapper.types";
+import { DataType } from "../map-with-info.types";
 
 export const dataMock: Record<DataType, any> = {
   ip: "212.77.98.9",

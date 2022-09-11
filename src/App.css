@@ -10,11 +10,6 @@
     "listOfSearches";
 }
 
-header {
-  grid-area: header;
-  background-color: #91c8ff;
-}
-
 @media only screen and (min-width: 768px) {
   .App {
     height: calc(100vh - 3rem);
@@ -28,9 +23,5 @@ header {
       "listOfSearches mapWithLocation"
       "listOfSearches search"
       "listOfSearches mapWithLastSearch";
-  }
-
-  html {
-    overflow: hidden;
   }
 }

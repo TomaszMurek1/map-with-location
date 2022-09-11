@@ -1,6 +1,6 @@
 import React from "react";
 import { Table, TableCell, TableRow, TableHead } from "@mui/material";
-import { DataType } from "../map/map-wrapper.types";
+import { DataType } from "../map-with-info.types";
 
 export const InfoLocation: React.FC<{ data: Record<DataType, string> }> = ({
   data,
