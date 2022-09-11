@@ -1,35 +1,41 @@
 import React, { useMemo } from "react";
-
 import "./App.css";
-
-import { SearchList } from "./components/search-list/search-list";
-import { MapWrapper } from "./components/map/map-wrapper";
 import { Search } from "./components/search/search";
 import {
   ISearchItem,
   SearchListContext,
 } from "./components/search-list-context";
+import { ThemeProvider } from "@emotion/react";
+import { theme } from "./theme";
+import { SearchList } from "./components/search-list/search-list";
+import { MapWithInfo } from "./components/map-with-info/map-with-info";
 
 const AppComponent: React.FC = () => {
   const [searchList, setSearchList] = React.useState<ISearchItem[]>([]);
+  const lastSearchItem: string = searchList[0] ? searchList[0].value : "";
+  const searchListContext = useMemo(
+    () => ({ searchList, setSearchList }),
+    [searchList]
+  );
 
-  const value = useMemo(() => ({ searchList, setSearchList }), [searchList]);
   return (
     <div className="App">
-      <MapWrapper
-        id="mapWithLocation"
-        address={"check"}
-        label="Map with user search"
-      />
-      <SearchListContext.Provider value={value}>
-        <SearchList />
-        <Search />
-      </SearchListContext.Provider>
-      <MapWrapper
-        id="mapWithLastSearch"
-        address={value.searchList[0] ? value.searchList[0].value : ""}
-        label="Map with last search"
-      />
+      <ThemeProvider theme={theme}>
+        <MapWithInfo
+          gridArea="mapWithLocation"
+          address={"check"}
+          label="Map with user search"
+        />
+        <SearchListContext.Provider value={searchListContext}>
+          <SearchList gridArea="listOfSearches" />
+          <Search gridArea="search" />
+        </SearchListContext.Provider>
+        <MapWithInfo
+          gridArea="mapWithLastSearch"
+          address={lastSearchItem}
+          label="Map with last search"
+        />
+      </ThemeProvider>
     </div>
   );
 };

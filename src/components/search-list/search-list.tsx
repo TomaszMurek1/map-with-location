@@ -1,14 +1,13 @@
-import { List, ListItem, ListItemText, Typography } from "@mui/material";
+import { Card, List, ListItem, ListItemText, Typography } from "@mui/material";
 import React, { useContext } from "react";
 import { SearchListContext } from "../search-list-context";
-import "./search-list.css";
 
-export const SearchList: React.FC = () => {
+export const SearchList: React.FC<{ gridArea: string }> = ({ gridArea }) => {
   const { searchList } = useContext(SearchListContext);
 
   return (
-    <div id="listOfSearches">
-      <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
+    <Card sx={{ gridArea: gridArea, overflow: "auto" }}>
+      <Typography variant="h6" component="div">
         List of searches
       </Typography>
       {searchList.length > 0 ? (
@@ -20,6 +19,6 @@ export const SearchList: React.FC = () => {
           ))}
         </List>
       ) : null}
-    </div>
+    </Card>
   );
 };
