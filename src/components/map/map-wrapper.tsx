@@ -10,7 +10,8 @@ import { InfoItem, MapItem } from "./map-wrapper.styles";
 export const MapWrapper: React.FC<{
   label: string;
   address: string;
-}> = ({ label, address }) => {
+  gridArea: string;
+}> = ({ label, address, gridArea }) => {
   const [data, setData] = useState<Record<DataType, string>>(dataMock);
   const key = process.env.REACT_APP_IPSTACK_API_KEY;
   console.log("address", address);
@@ -40,11 +41,21 @@ export const MapWrapper: React.FC<{
   }, [address]);
 
   return (
-    <Card sx={{ display: "grid", gridTemplateRows: "auto 1fr" }} raised={true}>
+    <Card
+      sx={{
+        display: "grid",
+        gridTemplateRows: "auto 1fr",
+        height: "auto",
+        gridArea: { gridArea },
+      }}
+    >
       <Typography sx={{ mt: 0, mb: 2 }} variant="h6" component="div">
         {label}
       </Typography>
-      <div style={{ display: "flex", gap: "2rem" }} className="mapWrapper">
+      <div
+        style={{ display: "flex", gap: "2rem", flexWrap: "wrap" }}
+        className="mapWrapper"
+      >
         <MapItem>
           {data && data.longitude ? (
             <div>

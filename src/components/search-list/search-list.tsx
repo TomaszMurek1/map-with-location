@@ -2,11 +2,11 @@ import { Card, List, ListItem, ListItemText, Typography } from "@mui/material";
 import React, { useContext } from "react";
 import { SearchListContext } from "../search-list-context";
 
-export const SearchList: React.FC = () => {
+export const SearchList: React.FC<{ gridArea: string }> = ({ gridArea }) => {
   const { searchList } = useContext(SearchListContext);
 
   return (
-    <Card id="listOfSearches" raised={true}>
+    <Card sx={{ gridArea: gridArea, overflow: "auto" }}>
       <Typography variant="h6" component="div">
         List of searches
       </Typography>

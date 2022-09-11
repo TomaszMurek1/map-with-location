@@ -7,8 +7,8 @@ import {
 } from "./components/search-list-context";
 import { ThemeProvider } from "@emotion/react";
 import { theme } from "./theme";
-import { MapUserLocation, MapSearchLocation } from "./components/App.styles";
 import { SearchList } from "./components/search-list/search-list";
+import { MapWrapper } from "./components/map/map-wrapper";
 
 const AppComponent: React.FC = () => {
   const [searchList, setSearchList] = React.useState<ISearchItem[]>([]);
@@ -17,12 +17,17 @@ const AppComponent: React.FC = () => {
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
-        <MapUserLocation address={"check"} label="Map with user search" />
+        <MapWrapper
+          gridArea="mapWithLocation"
+          address={"check"}
+          label="Map with user search"
+        />
         <SearchListContext.Provider value={value}>
-          <SearchList />
-          <Search />
+          <SearchList gridArea="listOfSearches" />
+          <Search gridArea="search" />
         </SearchListContext.Provider>
-        <MapSearchLocation
+        <MapWrapper
+          gridArea="mapWithLastSearch"
           address={value.searchList[0] ? value.searchList[0].value : ""}
           label="Map with last search"
         />

@@ -4,7 +4,7 @@ import Button from "@mui/material/Button";
 import { ISearchItem, SearchListContext } from "../search-list-context";
 import { Card } from "@mui/material";
 
-export const Search: React.FC = () => {
+export const Search: React.FC<{ gridArea: string }> = ({ gridArea }) => {
   const { searchList, setSearchList } = useContext(SearchListContext);
   const [valueToSearch, setValueToSearch] = useState<string>("");
   const searchData = () => {
@@ -20,10 +20,17 @@ export const Search: React.FC = () => {
   };
 
   return (
-    <Card raised={true} id="search" style={{ display: "flex", gap: "20px" }}>
-      <div style={{ alignSelf: "center" }}>
+    <Card
+      sx={{
+        gridArea: gridArea,
+        display: "flex",
+        gap: "20px",
+        minHeight: "4rem",
+      }}
+    >
+      <div style={{ alignSelf: "center", flexGrow: 1 }}>
         <TextField
-          style={{ flex: 1 }}
+          style={{ flex: 1, width: "100%" }}
           label="Search field"
           type="search"
           variant="standard"
