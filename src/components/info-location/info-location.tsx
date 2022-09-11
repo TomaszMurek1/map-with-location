@@ -1,31 +1,44 @@
 import React from "react";
+import { Table, TableCell, TableRow, TableHead } from "@mui/material";
+import { DataType } from "../map/map-wrapper.types";
 
-import { IData } from "../map/map-wrapper";
-import { dataMock } from "./info-location.mock";
-
-export const InfoLocation: React.FC<{ data: IData | null }> = ({ data }) => {
+export const InfoLocation: React.FC<{ data: Record<DataType, string> }> = ({
+  data,
+}) => {
   //const [myIP, setmyIP] = useState(address.ip());
 
   console.log("data", data);
 
+  interface IHeader {
+    propAccessor: DataType;
+    label: string;
+  }
+  const headers: IHeader[] = [
+    { propAccessor: "continent_name", label: "Continent:" },
+    { propAccessor: "ip", label: "IP Address::" },
+    { propAccessor: "region_name", label: "Region:" },
+    { propAccessor: "city", label: "City:" },
+    { propAccessor: "zip", label: "Zipcode:" },
+    { propAccessor: "latitude", label: "Latitude:" },
+    { propAccessor: "longitude", label: "Longitude:" },
+  ];
+
   return (
     <>
-      {dataMock ? (
-        <ul>
-          <li>Continent: {dataMock.continent_name}</li>
-          <li>IP Address: {dataMock.ip}</li>
-          <li>Region: {dataMock.region_name}</li>
-          {/*  <img
-                            src={data.location.country_flag}
-                            alt={data.region_name}
-                            height='250'
-                            width='400'
-                        /> */}
-          <li>City: {dataMock.city}</li>
-          <li>Zipcode: {dataMock.zip}</li>
-          <li>Latitude:{dataMock.latitude}</li>
-          <li>Longitude: {dataMock.longitude}</li>
-        </ul>
+      {data ? (
+        <Table>
+          <TableHead>
+            {headers.map((header: IHeader, index: number) => {
+              const accessor: DataType = header.propAccessor;
+              return (
+                <TableRow key={accessor}>
+                  <TableCell variant="head">{headers[index].label}</TableCell>
+                  <TableCell>{data[accessor]}</TableCell>
+                </TableRow>
+              );
+            })}
+          </TableHead>
+        </Table>
       ) : (
         <div>No data</div>
       )}

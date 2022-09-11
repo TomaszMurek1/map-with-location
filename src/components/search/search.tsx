@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { ISearchItem, SearchListContext } from "../search-list-context";
+import { Card } from "@mui/material";
 
 export const Search: React.FC = () => {
   const { searchList, setSearchList } = useContext(SearchListContext);
@@ -19,20 +20,19 @@ export const Search: React.FC = () => {
   };
 
   return (
-    <div
-      id="search"
-      style={{ alignSelf: "center", display: "flex", gap: "20px" }}
-    >
-      <TextField
-        style={{ flex: 1 }}
-        label="Search field"
-        type="search"
-        variant="standard"
-        onChange={(e) => updateSearchField(e)}
-      />
+    <Card raised={true} id="search" style={{ display: "flex", gap: "20px" }}>
+      <div style={{ alignSelf: "center" }}>
+        <TextField
+          style={{ flex: 1 }}
+          label="Search field"
+          type="search"
+          variant="standard"
+          onChange={(e) => updateSearchField(e)}
+        />
+      </div>
       <Button variant="outlined" onClick={() => searchData()}>
         Search
       </Button>
-    </div>
+    </Card>
   );
 };

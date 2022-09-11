@@ -1,6 +1,6 @@
-import { IData } from "../map/map-wrapper";
+import { DataType } from "../map/map-wrapper.types";
 
-export const dataMock: IData = {
+export const dataMock: Record<DataType, any> = {
   ip: "212.77.98.9",
   type: "ipv4",
   continent_code: "EU",

@@ -1,35 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { InfoLocation } from "../info-location/info-location";
-import Map from "./map";
 import axios from "axios";
-import "./map-wrapper.css";
-import { Typography } from "@mui/material";
-
-export interface IData {
-  continent_name: string;
-  region_name: string;
-  ip: string;
-  location: any;
-  city: string;
-  zip: string;
-  latitude: number;
-  longitude: number;
-  type: string;
-  continent_code: string;
-  country_code: string;
-  country_name: string;
-  region_code: string;
-  time_zone: any;
-  currency: any;
-  connection: any;
-}
+import "./map-wrapper.styles.tsx";
+import { Card, Typography } from "@mui/material";
+import { dataMock } from "../info-location/info-location.mock";
+import { DataType } from "./map-wrapper.types";
+import { InfoItem, MapItem } from "./map-wrapper.styles";
 
 export const MapWrapper: React.FC<{
   label: string;
-  id: any;
   address: string;
-}> = ({ id, label, address }) => {
-  const [data, setData] = useState<IData | null>(null);
+}> = ({ label, address }) => {
+  const [data, setData] = useState<Record<DataType, string>>(dataMock);
   const key = process.env.REACT_APP_IPSTACK_API_KEY;
   console.log("address", address);
 
@@ -37,6 +19,8 @@ export const MapWrapper: React.FC<{
   useEffect(() => {
     if (address) {
       console.log("api call");
+
+      //const array : string[]= array.
 
       const getdata = async () => {
         try {
@@ -56,12 +40,12 @@ export const MapWrapper: React.FC<{
   }, [address]);
 
   return (
-    <div id={id} className="gridItem">
-      <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
+    <Card sx={{ display: "grid", gridTemplateRows: "auto 1fr" }} raised={true}>
+      <Typography sx={{ mt: 0, mb: 2 }} variant="h6" component="div">
         {label}
       </Typography>
-      <div className="mapWrapper">
-        <div className="mapItem">
+      <div style={{ display: "flex", gap: "2rem" }} className="mapWrapper">
+        <MapItem>
           {data && data.longitude ? (
             <div>
               {/* <Map longitude={data.longitude} latitude={data.latitude} /> */}
@@ -69,11 +53,13 @@ export const MapWrapper: React.FC<{
           ) : (
             <div>test</div>
           )}
-        </div>
-        <div className="infoItem">
-          <InfoLocation data={data} />
-        </div>
+        </MapItem>
+        {data ? (
+          <InfoItem>
+            <InfoLocation data={data} />
+          </InfoItem>
+        ) : null}
       </div>
-    </div>
+    </Card>
   );
 };
