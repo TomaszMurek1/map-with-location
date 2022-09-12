@@ -19,7 +19,7 @@ export const MapWithInfo: React.FC<{
   const [data, setData] = useState<Record<DataType, any> | null>(null);
   const [mapLoadingError, setStateMapLoadingError] = useState<boolean>(false);
   const key: string = process.env.REACT_APP_IPSTACK_API_KEY as string;
-  const ipstackAPI: string = `http://api.ipstack.com/${address}?access_key=${key}`;
+  const ipstackAPI: string = `https://api.ipstack.com/${address}?access_key=${key}`;
 
   const getData: () => Promise<void> = async () => {
     try {
