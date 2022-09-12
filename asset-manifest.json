@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/map-with-location/static/css/main.ec0d660b.css",
+    "main.js": "/map-with-location/static/js/main.e5c756a4.js",
+    "index.html": "/map-with-location/index.html",
+    "main.ec0d660b.css.map": "/map-with-location/static/css/main.ec0d660b.css.map",
+    "main.e5c756a4.js.map": "/map-with-location/static/js/main.e5c756a4.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ec0d660b.css",
+    "static/js/main.e5c756a4.js"
+  ]
+}
